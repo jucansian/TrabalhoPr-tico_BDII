@@ -1,0 +1,1 @@
+-- SELECT m.nome, count(c.id) as qtde_consultas from medico m, consulta c where m.id = c.id_medico and c.data_hora_inicio > sysdate() group by m.nome order by m.nome;

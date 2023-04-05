@@ -1,0 +1,1 @@
+-- SELECT DATE_FORMAT(c.data_hora_inicio, '%d/%m'), (MAX(TIMESTAMPDIFF(MINUTE, c.data_hora_inicio, c.data_hora_fim))) as maior_duracao from CONSULTA C group by DATE_FORMAT(c.data_hora_inicio, '%d/%m');

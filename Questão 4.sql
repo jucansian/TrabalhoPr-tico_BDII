@@ -1,0 +1,1 @@
+-- SELECT m.nome, count(c.id) as consultas from medico m, especialidade e, consulta c where m.id = c.id_medico and e.id = m.id_especialidade and c.data_hora_fim < DATE_ADD(sysdate(), INTERVAL 300 minute) group by m.id order by consultas desc LIMIT 1;

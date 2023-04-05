@@ -1,0 +1,1 @@
+-- SELECT e.nome, count(c.id) as qtde_consultas from especialidade e, medico m, consulta c where e.id = m.id_especialidade and m.id = c.id_medico group by e.nome;

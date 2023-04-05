@@ -1,0 +1,1 @@
+-- SELECT p.nome as paciente, m.nome as medico, e.nome as especialidade, c.data_hora_inicio from consulta c, medico m, paciente p, especialidade e where c.id_medico = m.id and c.id_paciente = p.id and m.id_especialidade = e.id
