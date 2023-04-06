@@ -1,1 +1,15 @@
--- SELECT DATE_FORMAT(c.data_hora_inicio, '%d/%m'), (MAX(TIMESTAMPDIFF(MINUTE, c.data_hora_inicio, c.data_hora_fim))) as maior_duracao from CONSULTA C group by DATE_FORMAT(c.data_hora_inicio, '%d/%m');
+-- PRIMEIRA VERSÃO:
+SELECT DATE_FORMAT(c.data_hora_inicio, '%d/%m'), (MAX(TIMESTAMPDIFF(MINUTE, c.data_hora_inicio, c.data_hora_fim))) AS maior_duracao
+  FROM CONSULTA c 
+  GROUP BY DATE_FORMAT(c.data_hora_inicio, '%d/%m');
+
+-- VERSÃO OTIMIZADA:
+CREATE INDEX ix_consulta_data_hora_inicio ON CONSULTA (data_hora_inicio);
+
+SELECT DATE_FORMAT(c.data_hora_inicio, '%d/%m') AS data_consulta, (MAX(TIMESTAMPDIFF(MINUTE, c.data_hora_inicio, c.data_hora_fim))) AS maior_duracao
+  FROM CONSULTA c
+  GROUP BY DATE_FORMAT(c.data_hora_inicio, '%d/%m');
+  
+EXPLAIN SELECT DATE_FORMAT(c.data_hora_inicio, '%d/%m') AS data_consulta, MAX(TIMESTAMPDIFF(MINUTE, c.data_hora_inicio, c.data_hora_fim)) AS maior_duracao
+  FROM CONSULTA c
+  GROUP BY DATE_FORMAT(c.data_hora_inicio, '%d/%m');
